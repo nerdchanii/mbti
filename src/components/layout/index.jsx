@@ -1,6 +1,5 @@
 import React from "react";
 import Headers from "./Headers";
-import Footer from "./Footer";
 import "./index.scss";
 
 function Layout(props) {
