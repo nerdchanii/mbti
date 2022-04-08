@@ -16,7 +16,7 @@ function ChooseCharacter(props) {
           name={name}
           onClick={onclick}
           value={item}
-          style={choiced == item ? styles.choiced : null}
+          style={choiced === item ? styles.choiced : null}
         />
       ))}
     </div>
@@ -25,8 +25,8 @@ function ChooseCharacter(props) {
 
 const styles = {
   choiced: {
-    border: "5px solid red",
-    color: "red",
+    border: "5px solid #1B80FF",
+    color: "#1B80FF",
   },
 };
 
