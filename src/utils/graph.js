@@ -34,7 +34,7 @@ function getOrigin(data) {
         source: `combo_${match.sourceId}`,
         target: `combo_${match.targetId}`,
         label: getScore(match.score),
-        labelCfg: { style: { fontSize: 26, fill: getStroke(match.score) } },
+        labelCfg: { style: { fontSize: 24, fill: getStroke(match.score) } },
         style: {
           stroke: getStroke(match.score),
           lineWidth: 8,
@@ -210,6 +210,16 @@ export function renderGraph(data) {
     const memberNo = nodeId.replace("node_", "");
     toggleComboSelectedState(graph, memberNo);
     toggleEdge(graph, memberNo, getOrigin(data));
+  });
+
+  graph.on("node:mouseout", (e) => {
+    toggleComboSelectedState(graph, "");
+    toggleEdge(graph, "", getOrigin(data));
+  });
+
+  graph.on("node:mouseleave", (event) => {
+    toggleComboSelectedState(graph, "");
+    toggleEdge(graph, "", getOrigin(data));
   });
 
   graph.data(getOrigin(data));
