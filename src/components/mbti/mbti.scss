@@ -1,0 +1,13 @@
+@import "../../constants/colors.scss";
+
+.result-section{
+  display: flex;
+  justify-content: space-evenly;
+  font-size: 8vh;
+  align-items: center;
+  margin:0 auto;
+  height: 8vh;
+  span{
+    width: 8vh;
+  }
+}
