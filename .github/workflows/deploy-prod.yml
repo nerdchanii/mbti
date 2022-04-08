@@ -23,19 +23,21 @@ jobs:
             ${{ runner.OS }}-
 
       - name: Install Dependencies
-        run: npm install --production
+        run: npm install
 
       - name: Build
         env:
-          VITE_API_HOST: ${{ secrets.VITE_API_HOST }}
-          VITE_API_ERROR_HELPER_HOST: ${{ secrets.VITE_API_ERROR_HELPER_HOST }}
+          VITE_API_HOST: ${{ secrets.PROD_VITE_API_HOST }}
         run: npm run build
+
+      - name: Reinstall without Dev Dependencies
+        run: rm -rf node_modules && npm install --production
 
       - name: Deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_BUCKET: ${{ secrets.AWS_BUCKET }}
+          AWS_BUCKET: ${{ secrets.PROD_AWS_BUCKET }}
         run: |
           aws s3 cp \
               --recursive \
@@ -46,7 +48,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          DISTRIBUTION_ID: ${{ secrets.CLOUDFRONT_DISTRIBUTION_ID }}
+          DISTRIBUTION_ID: ${{ secrets.PROD_CLOUDFRONT_DISTRIBUTION_ID }}
         run: |
           aws cloudfront create-invalidation \
               --distribution-id $DISTRIBUTION_ID \
