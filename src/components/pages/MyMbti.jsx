@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import ChooseCharacter from "../ChooseCharacter";
 import Layout from "../layout";
-
+import ChooseCharacter from "../mbti/ChooseCharacter";
+import Char from "../mbti/Char";
+import "./myMbti.scss";
 function MyMbti() {
   const [mbti, setMbti] = useState({});
 
@@ -12,9 +13,11 @@ function MyMbti() {
     });
     console.log(mbti);
   };
+
+  const make = () => {};
   return (
     <Layout>
-      <div>
+      <div className="select-section">
         <ChooseCharacter
           className="choose-container"
           name="IE"
@@ -40,12 +43,13 @@ function MyMbti() {
           values={["J", "P"]}
         ></ChooseCharacter>
       </div>
-      <div>
-        <span>{mbti.IE}</span>
-        <span>{mbti.SN}</span>
-        <span>{mbti.TF}</span>
-        <span>{mbti.JP}</span>
+      <div className="result-section">
+        <Char char={mbti.IE} />
+        <Char char={mbti.SN} />
+        <Char char={mbti.TF} />
+        <Char char={mbti.JP} />
       </div>
+      <button onClick={make}></button>
     </Layout>
   );
 }
