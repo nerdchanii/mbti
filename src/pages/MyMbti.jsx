@@ -76,12 +76,6 @@ function MyMbti() {
           values={['J', 'P']}
         />
       </div>
-      <div className="result-section">
-        <Char char={mbti.IE}/>
-        <Char char={mbti.SN}/>
-        <Char char={mbti.TF}/>
-        <Char char={mbti.JP}/>
-      </div>
       <div>
         {!groupId && <div style={{ textAlign: 'center' }}>
           <TextField autoComplete={'off'} label={'그룹 이름'} onInput={onGroupNameInput} placeholder={'그룹 이름'} error={!groupId && !groupName}/>

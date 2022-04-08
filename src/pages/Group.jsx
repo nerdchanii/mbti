@@ -24,7 +24,7 @@ function Group() {
 
   return (
     <Layout>
-      <div id="mountNode" style={{ height: '80vh' }}/>
+      <div id="mountNode" style={{ height: window.document.documentElement.clientWidth / 2 }}/>
       <div style={{ textAlign: 'center' }}>
         <Button onClick={() => navigate(`/group/${groupId}/add`)} variant={'contained'} color={'info'}
                 size={'large'}>내 MBTI 추가하기</Button>
