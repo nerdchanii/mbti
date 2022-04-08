@@ -14,8 +14,9 @@ function App() {
         <Routes>
           <Route path="/" element={<LandingPage />} />
           <Route path="/mymbti" element={<MyMbti />} />
+          <Route path="/group/:groupId/add" element={<MyMbti />} />
           {/* <Route path="/result" element={<Result />} /> */}
-          <Route path="/group/:id" element={<Group />} />
+          <Route path="/group/:groupId" element={<Group />} />
           <Route path="*" element={<h1>ERROR PAGE 404</h1>} />
         </Routes>
       </BrowserRouter>
