@@ -9,7 +9,6 @@ function LandingPage() {
     <Layout className="landingPage">
       <h1>LandingPage</h1>
       <div className="buttonConatainer">
-        <ShareButton name={'챠니친구'} />
         <button>
           <Link to="/mymbti">지금 테스트 시작하기</Link>
         </button>
