@@ -85,16 +85,7 @@ export function renderGraph(data) {
     }
   }
 
-  let _fitViewPadding;
-  if (nodeLength <= 4) {
-    _fitViewPadding = _width * 0.06;
-  } else if (nodeLength <= 6) {
-    _fitViewPadding = _width * 0.05;
-  } else if (nodeLength <= 8) {
-    _fitViewPadding = _width * 0.04;
-  } else {
-    _fitViewPadding = _width * 0.03;
-  }
+  const _fitViewPadding = 10;
 
   let _nodeSize;
   if (nodeLength === 1) {
