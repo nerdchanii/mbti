@@ -23,8 +23,6 @@ function Group() {
   return (
     <Layout>
       <div id="mountNode" style={{ height: '80vh' }}/>
-      <br/>
-      <br/>
       <div style={{textAlign: 'center'}}>
         <ShareButton name={name}/>
       </div>
