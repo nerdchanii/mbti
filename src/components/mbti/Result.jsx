@@ -1,5 +1,4 @@
-import React, { useCallback } from "react";
-import axios from "axios";
+import React from "react";
 import Char from "./Char";
 import "./mbti.scss";
 
