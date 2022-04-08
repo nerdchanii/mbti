@@ -1,11 +1,11 @@
-import React from "react";
+import React from 'react';
 import './index.scss';
 
 function Footer() {
-  return <div style={{animation: 'footer 10s linear infinite'}}>
-    <span style={{fontSize: '2rem', color: 'white'}}>
+  return <div style={{overflow: 'hidden'}}>
+    <div style={{ animation: 'footer 10s linear infinite', fontSize: '2rem', color: 'white' }}>
       이스터에그 입니다
-    </span>
+    </div>
   </div>;
 }
 

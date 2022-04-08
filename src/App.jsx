@@ -12,8 +12,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<LandingPage />} />
-          <Route path="/mymbti" element={<MyMbti />} />
+          <Route path="/" element={<MyMbti />} />
           <Route path="/group/:groupId/add" element={<MyMbti />} />
           {/* <Route path="/result" element={<Result />} /> */}
           <Route path="/group/:groupId" element={<Group />} />

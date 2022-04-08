@@ -97,7 +97,9 @@ export function renderGraph(data) {
   }
 
   let _nodeSize;
-  if (nodeLength <= 4) {
+  if (nodeLength === 1) {
+    _nodeSize = 100;
+  } else if (nodeLength <= 4) {
     _nodeSize = _width * 0.15;
   } else if (nodeLength <= 6) {
     _nodeSize = _width * 0.12;
@@ -116,7 +118,7 @@ export function renderGraph(data) {
 
   const graph = new G6.Graph({
     container: "mountNode",
-    fitView: true,
+    fitView: nodeLength > 1,
     fitViewPadding: _fitViewPadding,
     width: _width,
     height: _height,
