@@ -27,10 +27,7 @@ function Group() {
   return (
     <Layout>
       <h2 style={{ textAlign: "center", marginTop: "1rem" }}>{name}</h2>
-      <div
-        id="mountNode"
-        style={{ height: window.document.documentElement.clientWidth / 2 }}
-      />
+      <div id="mountNode" />
       <div style={{ textAlign: "center" }}>
         <Button
           onClick={() => navigate(`/group/${groupId}/add`)}

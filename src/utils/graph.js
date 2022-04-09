@@ -1,5 +1,10 @@
 import G6 from "@antv/g6";
 
+const FONT_SIZE = {
+  NODE: 32,
+  EDGE: 24,
+};
+
 function getStroke(score) {
   if (score === "VERY_GOOD") return "#2D8FF4";
   if (score === "GOOD") return "#36B162";
@@ -25,7 +30,7 @@ function getOrigin(data) {
         id: `node_${user.id}`,
         label: user.name,
         comboId: `combo_${user.id}`,
-        labelCfg: { style: { fontSize: 32 } },
+        labelCfg: { style: { fontSize: FONT_SIZE.NODE } },
       };
     }),
     edges: data.matches.map((match) => {
@@ -34,7 +39,9 @@ function getOrigin(data) {
         source: `combo_${match.sourceId}`,
         target: `combo_${match.targetId}`,
         label: getScore(match.score),
-        labelCfg: { style: { fontSize: 24, fill: getStroke(match.score) } },
+        labelCfg: {
+          style: { fontSize: FONT_SIZE.EDGE, fill: getStroke(match.score) },
+        },
         style: {
           stroke: getStroke(match.score),
           lineWidth: 8,
@@ -73,7 +80,10 @@ export function renderGraph(data) {
     document.documentElement.clientHeight ||
     document.body.clientHeight;
 
-  const _width = document.querySelector("#mountNode").style.width;
+  const _width = parseFloat(
+    window.getComputedStyle(document.getElementById("mountNode")).width
+  );
+
   let _height;
   if (nodeLength === 2) {
     _height = _width * 0.6;
@@ -89,7 +99,7 @@ export function renderGraph(data) {
 
   let _nodeSize;
   if (nodeLength === 1) {
-    _nodeSize = 100;
+    _nodeSize = 50;
   } else if (nodeLength <= 4) {
     _nodeSize = _width * 0.15;
   } else if (nodeLength <= 6) {
@@ -100,13 +110,12 @@ export function renderGraph(data) {
 
   let _comboFontSize;
   if (_width <= 400) {
-    _comboFontSize = 20;
+    _comboFontSize = 10;
   } else if (_width <= 600) {
-    _comboFontSize = 22;
+    _comboFontSize = 16;
   } else {
     _comboFontSize = 24;
   }
-
   const graph = new G6.Graph({
     container: "mountNode",
     fitView: nodeLength > 1,
@@ -128,7 +137,7 @@ export function renderGraph(data) {
       labelCfg: {
         offset: 8,
         style: {
-          //fontSize: _nodeFontSize,
+          fontSize: _comboFontSize,
           fontFamily: "DearPistachio",
           cursor: "pointer",
         },
