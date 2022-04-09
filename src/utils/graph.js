@@ -81,7 +81,7 @@ export function renderGraph(data) {
     document.documentElement.clientHeight ||
     document.body.clientHeight;
 
-  const _width = parseFloat(
+  let _width = parseFloat(
     window.getComputedStyle(document.getElementById("mountNode")).width
   );
 
@@ -94,6 +94,11 @@ export function renderGraph(data) {
     } else {
       _height = _width;
     }
+  }
+
+  if (_height < 800) {
+    _height = 800;
+    _width = 800;
   }
 
   const _fitViewPadding = 10;
