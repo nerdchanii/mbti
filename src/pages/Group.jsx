@@ -1,11 +1,11 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
-import Layout from '../layout';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Layout from "../layout";
 
-import { renderGraph } from '../utils/graph';
-import ShareButton from '../components/ShareButton';
-import { Button } from '@mui/material';
+import { renderGraph } from "../utils/graph";
+import ShareButton from "../components/ShareButton";
+import { Button } from "@mui/material";
 
 function Group() {
   const { groupId } = useParams();
@@ -26,18 +26,24 @@ function Group() {
 
   return (
     <Layout>
-      <h2 style={{ textAlign: 'center', marginTop: '1rem' }}>{name}</h2>
-      <div id="mountNode" style={{ textAlign: 'center' }}/>
-      <div style={{ textAlign: 'center' }}>
+      <h2 style={{ textAlign: "center", marginTop: "1rem" }}>{name}</h2>
+      <div id="mountNode" style={{ textAlign: "center" }} />
+      <div
+        style={{
+          textAlign: "center",
+          display: "flex",
+          justifyContent: "space-evenly",
+        }}
+      >
         <Button
           onClick={() => navigate(`/group/${groupId}/add`)}
-          variant={'contained'}
-          color={'info'}
-          size={'large'}
+          variant={"contained"}
+          color={"info"}
+          size={"large"}
         >
           내 MBTI 추가하기
         </Button>
-        <ShareButton name={name}/>
+        <ShareButton name={name} />
       </div>
     </Layout>
   );

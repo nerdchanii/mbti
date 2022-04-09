@@ -1,6 +1,6 @@
-import React from 'react';
-import { Button, Snackbar } from '@mui/material';
-import { getCurrentUrl } from '../utils/browser';
+import React from "react";
+import { Button, Snackbar } from "@mui/material";
+import { getCurrentUrl } from "../utils/browser";
 
 function ShareButton(props) {
   const [open, setOpen] = React.useState(false);
@@ -13,30 +13,38 @@ function ShareButton(props) {
   const onClick = () => {
     try {
       window.navigator.share({
-        url: '',
+        url: "",
         title,
       });
     } catch (e) {
-      const element = document.createElement('input');
+      const element = document.createElement("input");
       element.value = currentUrl;
       document.body.appendChild(element);
       element.select();
-      document.execCommand('copy');
+      document.execCommand("copy");
       document.body.removeChild(element);
       setOpen(true);
     }
   };
 
-  return <Button id="share" onClick={onClick} size={'large'} color={'primary'} variant={'contained'}>
-    <Snackbar
-      message={'주소가 클립보드에 복사되었습니다!'}
-      open={open}
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
-      onClose={() => setOpen(false)}
-      autoHideDuration={1000}
-    />
-    지인들에게 공유하기
-  </Button>;
+  return (
+    <Button
+      id="share"
+      onClick={onClick}
+      size={"large"}
+      color={"primary"}
+      variant={"contained"}
+    >
+      <Snackbar
+        message={"주소가 클립보드에 복사되었습니다!"}
+        open={open}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        onClose={() => setOpen(false)}
+        autoHideDuration={1000}
+      />
+      같이 떡볶이 먹을 친구 소환하러가기!
+    </Button>
+  );
 }
 
 export default ShareButton;
