@@ -13,7 +13,7 @@ function ShareButton(props) {
   const onClick = () => {
     try {
       window.navigator.share({
-        url: "",
+        url: '',
         title,
       });
     } catch (e) {
@@ -27,7 +27,7 @@ function ShareButton(props) {
     }
   };
 
-  return <Button id='share' onClick={onClick} size={'large'} color={'primary'} variant={'contained'}>
+  return <Button id="share" onClick={onClick} size={'large'} color={'primary'} variant={'contained'}>
     <Snackbar
       message={'주소가 클립보드에 복사되었습니다!'}
       open={open}
