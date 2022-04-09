@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import ChooseItem from "./ChooseItem";
+import React, { useState } from 'react';
+import ChooseItem from './ChooseItem';
 
 function ChooseCharacter(props) {
   const { name, onClick, values } = props;
@@ -25,8 +25,8 @@ function ChooseCharacter(props) {
 
 const styles = {
   choiced: {
-    border: "5px solid #1B80FF",
-    color: "#1B80FF",
+    border: '5px solid #1B80FF',
+    color: '#1B80FF',
   },
 };
 

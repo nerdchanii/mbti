@@ -1,4 +1,4 @@
-import G6 from "@antv/g6";
+import G6 from '@antv/g6';
 
 const FONT_SIZE = {
   NODE: 16,
@@ -6,21 +6,21 @@ const FONT_SIZE = {
 };
 
 function getStroke(score) {
-  if (score === "VERY_GOOD") return "#2D8FF4";
-  if (score === "GOOD") return "#36B162";
-  if (score === "SOSO") return "#FBC140";
-  if (score === "BAD") return "#FF5F00";
-  if (score === "VERY_BAD") return "#F03A36";
-  throw new Error("invalid score");
+  if (score === 'VERY_GOOD') return '#2D8FF4';
+  if (score === 'GOOD') return '#36B162';
+  if (score === 'SOSO') return '#FBC140';
+  if (score === 'BAD') return '#FF5F00';
+  if (score === 'VERY_BAD') return '#F03A36';
+  throw new Error('invalid score');
 }
 
 function getScore(score) {
-  if (score === "VERY_GOOD") return "천생연분";
-  if (score === "GOOD") return "좋음";
-  if (score === "SOSO") return "그닥";
-  if (score === "BAD") return "안좋음";
-  if (score === "VERY_BAD") return "파국";
-  throw new Error("invalid score");
+  if (score === 'VERY_GOOD') return '천생연분';
+  if (score === 'GOOD') return '좋음';
+  if (score === 'SOSO') return '그닥';
+  if (score === 'BAD') return '안좋음';
+  if (score === 'VERY_BAD') return '파국';
+  throw new Error('invalid score');
 }
 
 function getOrigin(data) {
@@ -54,9 +54,9 @@ function getOrigin(data) {
         id: `combo_${user.id}`,
         label: user.mbti,
         style: {
-          stroke: "#DADBDC",
+          stroke: '#DADBDC',
           lineWidth: 1,
-          fill: "#FFFFFF",
+          fill: '#FFFFFF',
         },
       };
     }),
@@ -81,8 +81,8 @@ export function renderGraph(data) {
     document.documentElement.clientHeight ||
     document.body.clientHeight;
 
-  const _width = parseFloat(
-    window.getComputedStyle(document.getElementById("mountNode")).width
+  let _width = parseFloat(
+    window.getComputedStyle(document.getElementById('mountNode')).width
   );
 
   let _height;
@@ -94,6 +94,11 @@ export function renderGraph(data) {
     } else {
       _height = _width;
     }
+  }
+
+  if (_height < 800) {
+    _height = 800;
+    _width = 800;
   }
 
   const _fitViewPadding = 10;
@@ -118,109 +123,109 @@ export function renderGraph(data) {
     _comboFontSize = 18;
   }
   const graph = new G6.Graph({
-    container: "mountNode",
+    container: 'mountNode',
     fitView: nodeLength > 1,
     fitViewPadding: _fitViewPadding,
     width: _width,
     height: _height,
     groupByTypes: false,
     layout: {
-      type: "circular",
+      type: 'circular',
     },
     defaultNode: {
-      type: "circle",
+      type: 'circle',
       size: _nodeSize,
       style: {
         lineWidth: 0,
-        fill: "transparent",
-        cursor: "pointer",
+        fill: 'transparent',
+        cursor: 'pointer',
       },
       labelCfg: {
         offset: 8,
         style: {
           fontSize: _comboFontSize,
-          fontFamily: "DearPistachio",
-          cursor: "pointer",
+          fontFamily: 'DearPistachio',
+          cursor: 'pointer',
         },
       },
     },
     defaultEdge: {
       style: {
-        stroke: "#F0F1F2",
+        stroke: '#F0F1F2',
         lineWidth: 10,
       },
       labelCfg: {
         autoRotate: true,
         refY: 6,
         style: {
-          fontWeight: "bold",
+          fontWeight: 'bold',
         },
       },
     },
     defaultCombo: {
       style: {
-        cursor: "pointer",
+        cursor: 'pointer',
       },
       labelCfg: {
-        position: "bottom",
+        position: 'bottom',
         refY: _nodeSize * -1 * 0.3,
         style: {
           fontSize: _comboFontSize,
-          fill: "#AAAAAC",
-          fontFamily: "DearPistachio",
-          fontWeight: "bold",
-          cursor: "pointer",
+          fill: '#AAAAAC',
+          fontFamily: 'DearPistachio',
+          fontWeight: 'bold',
+          cursor: 'pointer',
         },
       },
     },
 
     comboStateStyles: {
       selected: {
-        stroke: "#55ACEE",
+        stroke: '#55ACEE',
         lineWidth: 8,
       },
     },
   });
 
-  graph.on("combo:click", (event) => {
+  graph.on('combo:click', (event) => {
     const comboId = event.item.getModel().id;
-    const memberNo = comboId.replace("combo_", "");
+    const memberNo = comboId.replace('combo_', '');
 
     toggleComboSelectedState(graph, memberNo);
     toggleEdge(graph, memberNo, getOrigin(data));
   });
 
-  graph.on("combo:mouseover", (event) => {
+  graph.on('combo:mouseover', (event) => {
     const comboId = event.item.getModel().id;
-    const memberNo = comboId.replace("combo_", "");
+    const memberNo = comboId.replace('combo_', '');
 
     toggleComboSelectedState(graph, memberNo);
     toggleEdge(graph, memberNo, getOrigin(data));
   });
 
-  graph.on("node:click", (event) => {
+  graph.on('node:click', (event) => {
     const nodeId = event.item.getModel().id;
-    const memberNo = nodeId.replace("node_", "");
+    const memberNo = nodeId.replace('node_', '');
 
     toggleComboSelectedState(graph, memberNo);
     toggleEdge(graph, memberNo, getOrigin(data));
   });
 
-  graph.on("node:mouseover", (event) => {
+  graph.on('node:mouseover', (event) => {
     const nodeId = event.item.getModel().id;
-    const memberNo = nodeId.replace("node_", "");
+    const memberNo = nodeId.replace('node_', '');
     toggleComboSelectedState(graph, memberNo);
     toggleEdge(graph, memberNo, getOrigin(data));
   });
 
-  graph.on("node:mouseout", (e) => {
-    toggleComboSelectedState(graph, "");
-    toggleEdge(graph, "", getOrigin(data));
+  graph.on('node:mouseout', (e) => {
+    toggleComboSelectedState(graph, '');
+    toggleEdge(graph, '', getOrigin(data));
   });
 
-  graph.on("node:mouseleave", (event) => {
-    toggleComboSelectedState(graph, "");
-    toggleEdge(graph, "", getOrigin(data));
+  graph.on('node:mouseleave', (event) => {
+    toggleComboSelectedState(graph, '');
+    toggleEdge(graph, '', getOrigin(data));
   });
 
   graph.data(getOrigin(data));
@@ -228,16 +233,16 @@ export function renderGraph(data) {
   graph.render();
 
   // 초기화
-  toggleComboSelectedState(graph, "");
-  toggleEdge(graph, "", getOrigin(data));
+  toggleComboSelectedState(graph, '');
+  toggleEdge(graph, '', getOrigin(data));
 }
 
 function toggleComboSelectedState(graph, memberNo) {
   graph.getCombos().forEach((combo) => {
     graph.setItemState(
       combo,
-      "selected",
-      combo.getModel().id === "combo_" + memberNo
+      'selected',
+      combo.getModel().id === 'combo_' + memberNo
     );
   });
 }
@@ -246,8 +251,8 @@ function toggleEdge(graph, targetMemberNo, origin) {
   graph.getEdges().forEach((edge) => {
     const model = edge.getModel();
     if (
-      model.source === "combo_" + targetMemberNo ||
-      model.target === "combo_" + targetMemberNo
+      model.source === 'combo_' + targetMemberNo ||
+      model.target === 'combo_' + targetMemberNo
     ) {
       const targetEdgeData = origin.edges.find(function (dataEdge) {
         return (
@@ -263,8 +268,8 @@ function toggleEdge(graph, targetMemberNo, origin) {
         edge.toFront();
       }
     } else {
-      model.style.stroke = "#F0F1F2";
-      model.label = "";
+      model.style.stroke = '#F0F1F2';
+      model.label = '';
       edge.toBack();
     }
   });

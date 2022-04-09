@@ -78,11 +78,13 @@ function MyMbti() {
       </div>
       <div>
         {!groupId && <div style={{ textAlign: 'center' }}>
-          <TextField autoComplete={'off'} label={'그룹 이름'} onInput={onGroupNameInput} placeholder={'그룹 이름'} error={!groupId && !groupName}/>
+          <TextField autoComplete={'off'} label={'그룹 이름'} onInput={onGroupNameInput} placeholder={'그룹 이름'}
+                     error={!groupId && !groupName}/>
         </div>}
         <br/>
         <div style={{ display: 'flex', justifyContent: 'center' }}>
-          <TextField autoComplete={'off'} label={'내 이름'} onInput={onUserNameInput} placeholder={'내 이름'} error={!userName}/>
+          <TextField autoComplete={'off'} label={'내 이름'} onInput={onUserNameInput} placeholder={'내 이름'}
+                     error={!userName}/>
           <Button onClick={makeGroup} variant={'contained'} color={'primary'} size={'large'}>궁합 보러가기</Button>
         </div>
       </div>
