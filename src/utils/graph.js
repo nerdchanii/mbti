@@ -1,8 +1,8 @@
 import G6 from "@antv/g6";
 
 const FONT_SIZE = {
-  NODE: 32,
-  EDGE: 24,
+  NODE: 16,
+  EDGE: 8,
 };
 
 function getStroke(score) {
@@ -31,6 +31,7 @@ function getOrigin(data) {
         label: user.name,
         comboId: `combo_${user.id}`,
         labelCfg: { style: { fontSize: FONT_SIZE.NODE } },
+        size: 10,
       };
     }),
     edges: data.matches.map((match) => {
@@ -44,7 +45,7 @@ function getOrigin(data) {
         },
         style: {
           stroke: getStroke(match.score),
-          lineWidth: 8,
+          lineWidth: 2,
         },
       };
     }),
@@ -54,7 +55,7 @@ function getOrigin(data) {
         label: user.mbti,
         style: {
           stroke: "#DADBDC",
-          lineWidth: 4,
+          lineWidth: 1,
           fill: "#FFFFFF",
         },
       };
@@ -99,22 +100,22 @@ export function renderGraph(data) {
 
   let _nodeSize;
   if (nodeLength === 1) {
-    _nodeSize = 50;
-  } else if (nodeLength <= 4) {
-    _nodeSize = _width * 0.15;
-  } else if (nodeLength <= 6) {
-    _nodeSize = _width * 0.12;
+    _nodeSize = 20;
+  } else if (nodeLength <= 10) {
+    _nodeSize = _width * 0.01;
+  } else if (nodeLength <= 20) {
+    _nodeSize = _width * 0.005;
   } else {
-    _nodeSize = _width * 0.09;
+    _nodeSize = _width * 0.001;
   }
-
+  console.log(_nodeSize);
   let _comboFontSize;
   if (_width <= 400) {
     _comboFontSize = 10;
   } else if (_width <= 600) {
-    _comboFontSize = 16;
+    _comboFontSize = 13;
   } else {
-    _comboFontSize = 24;
+    _comboFontSize = 18;
   }
   const graph = new G6.Graph({
     container: "mountNode",
@@ -150,7 +151,7 @@ export function renderGraph(data) {
       },
       labelCfg: {
         autoRotate: true,
-        refY: 24,
+        refY: 6,
         style: {
           fontWeight: "bold",
         },
